@@ -2,5 +2,10 @@
 	"workbench.colorCustomizations": {
 		"minimap.background": "#00000000",
 		"scrollbar.shadow": "#00000000"
+	},
+	"files.associations": {
+		"*.xpm": "c",
+		"stdlib.h": "c",
+		"libft.h": "c"
 	}
 }
