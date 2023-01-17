@@ -5,34 +5,35 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/17 15:10:02 by ylabrahm          #+#    #+#              #
-#    Updated: 2023/01/17 22:23:00 by ylabrahm         ###   ########.fr        #
+#    Created: 2022/10/23 23:46:47 by ylabrahm          #+#    #+#              #
+#    Updated: 2022/10/25 00:07:04 by ylabrahm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME_C = client
 
-NAME_S = server
+NAME = libftprintf.a
 
-LIBFT = libft/libft.a
+SRC = ft_printf.c \
+	sources/ft_print_char.c sources/ft_print_hexl.c \
+	sources/ft_print_int_.c sources/ft_print_str_.c \
+	sources/ft_print_uint.c sources/ft_print_hexp.c
 
-FT_PRINTF = libft/ft_printf/libftprintf.a
+OBJ = $(SRC:.c=.o)
 
-MAKE_LIBFT = make -C libft/
+RM = rm -f
 
-MAKE_PRINTF = make -C libft/ft_printf/
+CFLAGS = -Wall -Wextra -Werror
 
-CC = cc
+all:	$(NAME)
 
-all:
-	$(MAKE_LIBFT)
-	$(MAKE_PRINTF)
-	$(CC) -o $(NAME_C) client.c $(LIBFT) $(FT_PRINTF)
-	$(CC) -o $(NAME_S) server.c $(LIBFT) $(FT_PRINTF)
-	
+$(NAME):	$(OBJ)
+	ar rc $(NAME) $(OBJ)
+
 clean:
-	rm -f $(NAME_C) $(NAME_S)
-	make fclean -C libft/
-	make fclean -C libft/ft_printf/
+	$(RM) *.o
+	$(RM) */*.o
 
 fclean:	clean
+	$(RM) *.a
+
+re: fclean all
