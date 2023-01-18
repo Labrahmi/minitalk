@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ylabrahm <ylabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 20:03:52 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/17 15:51:57 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:19:19 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdarg.h>
+
+# ifndef SIZE_MAX
+#  define SIZE_MAX (18446744073709551615UL)
+# endif
 
 typedef struct s_list
 {
@@ -23,6 +28,13 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+int		ft_printf(const char *ch, ...);
+int		ft_print_char(char c);
+void	ft_print_int_(int i, int *ip);
+void	ft_print_uint(unsigned int ui, int *ip);
+int		ft_print_str_(char *cp);
+void	ft_print_hexl(unsigned int ul, int *ip, char c);
+void	ft_print_hexp(unsigned long ul, int *ip);
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);

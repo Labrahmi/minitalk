@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_uint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ylabrahm <ylabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:38:43 by ylabrahm          #+#    #+#             */
-/*   Updated: 2022/10/25 00:44:17 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:16:52 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../../libft.h"
 
 void	ft_print_uint(unsigned int ui, int *count)
 {

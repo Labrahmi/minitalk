@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+         #
+#    By: ylabrahm <ylabrahm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 21:30:11 by ylabrahm          #+#    #+#              #
-#    Updated: 2023/01/16 20:50:38 by ylabrahm         ###   ########.fr        #
+#    Updated: 2023/01/18 20:22:37 by ylabrahm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,15 @@ SRCS = 	ft_atoi.c \
 		ft_strtrim.c \
 		ft_substr.c \
 		ft_tolower.c \
-		ft_toupper.c 
-		
+		ft_toupper.c \
+		ft_printf/ft_printf.c \
+		ft_printf/sources/ft_print_char.c \
+		ft_printf/sources/ft_print_hexl.c \
+		ft_printf/sources/ft_print_int_.c \
+		ft_printf/sources/ft_print_str_.c \
+		ft_printf/sources/ft_print_uint.c \
+		ft_printf/sources/ft_print_hexp.c 
+
 SRC_B =	ft_lstadd_back_bonus.c \
 		ft_lstadd_front_bonus.c \
 		ft_lstlast_bonus.c \
