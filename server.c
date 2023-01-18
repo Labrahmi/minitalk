@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:53 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/17 23:11:40 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:06:59 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 #include "libft/libft.h"
 #include "libft/ft_printf/ft_printf.h"
 
-void	ft_set_to_zeros(unsigned char *array)
+int	g_received[8];
+
+void	ft_set_to_zeros(int *array)
 {
 	int	i;
 
 	while (i < 8)
-		array[i++] = '0';
+		array[i++] = 0;
 }
-
-unsigned char	g_received[8];
 
 int	ft_pow(n, p)
 {
@@ -42,7 +42,7 @@ int	ft_pow(n, p)
 	return (res);
 }
 
-void	ft_bin_to_dec(unsigned char *rev)
+void	ft_bin_to_dec(int *rev)
 {
 	int	some;
 	int	i;
@@ -51,7 +51,7 @@ void	ft_bin_to_dec(unsigned char *rev)
 	i = 0;
 	while (i < 8)
 	{
-		some += (rev[i] - '0') * ft_pow(2, i);
+		some += (rev[i]) * ft_pow(2, i);
 		i++;
 	}
 	ft_printf("%c", some);
@@ -59,15 +59,15 @@ void	ft_bin_to_dec(unsigned char *rev)
 
 void	sigint_handler(int sig)
 {
-	unsigned char	c;
-	static int		i;
-	int				j;
+	static int	i;
+	int			j;
+	int			c;
 
 	ft_set_to_zeros(g_received);
 	if (sig == SIGUSR1)
-		c = '0';
+		c = 0;
 	if (sig == SIGUSR2)
-		c = '1';
+		c = 1;
 	g_received[i] = c;
 	i++;
 	if (i == 8)

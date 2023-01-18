@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:56 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/17 23:18:33 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:52:43 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,36 +38,36 @@ void	ft_reverse_array(unsigned char *array)
 	}
 }
 
-void	ft_set_to_zeros(unsigned char *array)
+void	ft_set_to_zeros(int *array)
 {
 	int	i;
 
 	while (i < 8)
-		array[i++] = '0';
+		array[i++] = 0;
 }
 
 void	ft_print_bin(char num, int pid)
 {
-	int				i;
-	unsigned char	array[8];
-	unsigned char	temp_num;
-	
+	int	i;
+	int	array[8];
+	int	temp_num;
+
 	ft_set_to_zeros(array);
 	temp_num = num;
 	i = 0;
 	while (temp_num)
 	{
-		array[i++] = (temp_num % 2) + '0';
+		array[i++] = (temp_num % 2);
 		temp_num /= 2;
 	}
 	i = 0;
 	while (i < 8)
 	{
-		if (array[i] == '0')
+		if (array[i] == 0)
 			kill(pid, SIGUSR1);
-		if (array[i] == '1')
+		if (array[i] == 1)
 			kill(pid, SIGUSR2);
-		usleep(10);
+		usleep(100);
 		i++;
 	}
 }
