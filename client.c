@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylabrahm <ylabrahm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:56 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/19 01:14:25 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:44:48 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_set_to_zeros(int *array)
 {
 	int	i;
 
+	i = 0;
 	while (i < 8)
 		array[i++] = 0;
 }
@@ -50,7 +51,9 @@ void	ft_print_bin(char num, int pid)
 	int	i;
 	int	array[8];
 	int	temp_num;
-
+/*
+	01111001 = y = 121
+*/
 	ft_set_to_zeros(array);
 	temp_num = num;
 	i = 0;
@@ -66,18 +69,19 @@ void	ft_print_bin(char num, int pid)
 			kill(pid, SIGUSR1);
 		if (array[i] == 1)
 			kill(pid, SIGUSR2);
-		usleep(10000);
+		usleep(100);
 		i++;
 	}
 }
 
-int main(int argc, char const *argv[])
+int main(int argc, const char *argv[])
 {
 	int		i;
 	char	*string;
 	if (argc == 3)
 	{
 		string = (char *) argv[2];
+		i = 0;
 		while (string[i])
 		{
 			ft_print_bin(string[i] , ft_atoi(argv[1]));

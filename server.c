@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:53 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/19 13:33:05 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:04:49 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,14 @@ void	sigint_handler(int sig, siginfo_t *info, void *context)
 	int				c;
 
 	(void) context;
-
 	if (!(client_pid))
 		client_pid = info->si_pid;
-	
 	if (client_pid != info->si_pid)
 	{
 		i = 0;
 		ft_set_to_zeros(g_received);
 		client_pid = 0;
 	}
-
 	ft_set_to_zeros(g_received);
 	if (sig == SIGUSR1)
 		c = 0;
@@ -93,13 +90,12 @@ int main(void)
 	int server_pid;
 
 	server_pid = getpid();
-	printf("%d\n", server_pid);
+	ft_printf("%d\n", server_pid);
 	struct sigaction action;
-    // action.sa_handler = sigint_handler;
-	sigemptyset(&action.sa_mask);
     action.sa_flags = SA_SIGINFO;
+    action.sa_sigaction = sigint_handler;
     sigaction(SIGUSR1, &action, NULL);
-    sigaction(SIGUSR2, &action, NULL);	
+    sigaction(SIGUSR2, &action, NULL);
 	while (1)
 		pause();
 	return 0;
