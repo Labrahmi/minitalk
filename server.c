@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:53 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/19 13:17:43 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/19 13:33:05 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int main(void)
 	server_pid = getpid();
 	printf("%d\n", server_pid);
 	struct sigaction action;
-    action.sa_handler = sigint_handler;
+    // action.sa_handler = sigint_handler;
 	sigemptyset(&action.sa_mask);
     action.sa_flags = SA_SIGINFO;
     sigaction(SIGUSR1, &action, NULL);
