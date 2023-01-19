@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ylabrahm <ylabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:53 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/18 15:06:59 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/19 01:17:06 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <unistd.h>
 #include <signal.h>
 #include "libft/libft.h"
-#include "libft/ft_printf/ft_printf.h"
 
 int	g_received[8];
 
@@ -27,7 +26,7 @@ void	ft_set_to_zeros(int *array)
 		array[i++] = 0;
 }
 
-int	ft_pow(n, p)
+int	ft_pow(int n, int p)
 {
 	int	i;
 	int	res;
@@ -57,11 +56,24 @@ void	ft_bin_to_dec(int *rev)
 	ft_printf("%c", some);
 }
 
-void	sigint_handler(int sig)
+void	sigint_handler(int sig, siginfo_t *info, void *context)
 {
-	static int	i;
-	int			j;
-	int			c;
+	static	pid_t	client_pid;
+	static int		i;
+	int				j;
+	int				c;
+
+	(void) context;
+
+	if (!(client_pid))
+		client_pid = info->si_pid;
+	
+	if (client_pid != info->si_pid)
+	{
+		i = 0;
+		ft_set_to_zeros(g_received);
+		client_pid = 0;
+	}
 
 	ft_set_to_zeros(g_received);
 	if (sig == SIGUSR1)
@@ -82,9 +94,13 @@ int main(int argc, char const *argv[])
 	int server_pid;
 
 	server_pid = getpid();
-	ft_printf("%d\n", server_pid);
-	signal(SIGUSR1, sigint_handler);
-	signal(SIGUSR2, sigint_handler);
+	printf("%d\n", server_pid);
+	struct sigaction action;
+    action.sa_handler = sigint_handler;
+	sigemptyset(&action.sa_mask);
+    action.sa_flags = SA_SIGINFO;
+    sigaction(SIGUSR1, &action, NULL);
+    sigaction(SIGUSR2, &action, NULL);	
 	while (1)
 		pause();
 	return 0;

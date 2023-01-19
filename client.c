@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ylabrahm <ylabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:56 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/18 14:52:43 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/19 01:14:25 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <unistd.h>
 #include <signal.h>
 #include "libft/libft.h"
-#include "libft/ft_printf/ft_printf.h"
 
 void	ft_reverse_array(unsigned char *array)
 {
@@ -67,7 +66,7 @@ void	ft_print_bin(char num, int pid)
 			kill(pid, SIGUSR1);
 		if (array[i] == 1)
 			kill(pid, SIGUSR2);
-		usleep(100);
+		usleep(10000);
 		i++;
 	}
 }
