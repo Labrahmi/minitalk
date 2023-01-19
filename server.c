@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylabrahm <ylabrahm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:53 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/19 01:17:06 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/19 13:17:43 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	sigint_handler(int sig, siginfo_t *info, void *context)
 {
 	static	pid_t	client_pid;
 	static int		i;
-	int				j;
 	int				c;
 
 	(void) context;
@@ -89,7 +88,7 @@ void	sigint_handler(int sig, siginfo_t *info, void *context)
 	}
 }
 
-int main(int argc, char const *argv[])
+int main(void)
 {
 	int server_pid;
 
