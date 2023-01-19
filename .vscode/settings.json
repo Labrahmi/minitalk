@@ -6,6 +6,7 @@
 	"files.associations": {
 		"*.xpm": "c",
 		"stdlib.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"minitalk.h": "c"
 	}
 }

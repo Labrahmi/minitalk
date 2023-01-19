@@ -6,20 +6,36 @@
 #    By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 15:10:02 by ylabrahm          #+#    #+#              #
-#    Updated: 2023/01/19 16:21:39 by ylabrahm         ###   ########.fr        #
+#    Updated: 2023/01/19 19:45:06 by ylabrahm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=client server
+NAME = client server
 
-SRCS=client.c server.c
+SRCS = client.c server.c
 
-OBJS=$(SRCS:.c=.o)
+LIBFT_FILE = libft/libft.a
 
-CC=cc
+OBJS = $(SRCS:.c=.o)
 
-all : $(NAME)
+CC = cc
 
-$(NAME) : $(OBJS)
-	$(CC) client.o libft/libft.a -o client
-	$(CC) server.o libft/libft.a -o server
+RM = rm -f
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	@make -C libft/
+	$(CC) client.o $(LIBFT_FILE) -o client
+	$(CC) server.o $(LIBFT_FILE) -o server
+
+clean:
+	$(RM) $(NAME)
+	$(RM) $(OBJS)
+	@make fclean -C libft/
+
+fclean: clean
+
+re:	fclean all
+
+.PHONY: all clean fclean re

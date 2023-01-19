@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:53 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/19 17:04:49 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:28:58 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_set_to_zeros(int *array)
 {
 	int	i;
 
+	i = 0;
 	while (i < 8)
 		array[i++] = 0;
 }
@@ -58,11 +59,10 @@ void	ft_bin_to_dec(int *rev)
 
 void	sigint_handler(int sig, siginfo_t *info, void *context)
 {
-	static	pid_t	client_pid;
+	static pid_t	client_pid;
 	static int		i;
 	int				c;
 
-	(void) context;
 	if (!(client_pid))
 		client_pid = info->si_pid;
 	if (client_pid != info->si_pid)
@@ -71,7 +71,6 @@ void	sigint_handler(int sig, siginfo_t *info, void *context)
 		ft_set_to_zeros(g_received);
 		client_pid = 0;
 	}
-	ft_set_to_zeros(g_received);
 	if (sig == SIGUSR1)
 		c = 0;
 	if (sig == SIGUSR2)
@@ -85,18 +84,20 @@ void	sigint_handler(int sig, siginfo_t *info, void *context)
 	}
 }
 
-int main(void)
+int	main(void)
 {
-	int server_pid;
+	int					server_pid;
+	struct sigaction	action;
 
 	server_pid = getpid();
 	ft_printf("%d\n", server_pid);
-	struct sigaction action;
-    action.sa_flags = SA_SIGINFO;
-    action.sa_sigaction = sigint_handler;
-    sigaction(SIGUSR1, &action, NULL);
-    sigaction(SIGUSR2, &action, NULL);
+	action.sa_sigaction = sigint_handler;
+	action.sa_flags = SA_SIGINFO;
 	while (1)
+	{
+		sigaction(SIGUSR1, &action, NULL);
+		sigaction(SIGUSR2, &action, NULL);
 		pause();
-	return 0;
+	}
+	return (0);
 }
