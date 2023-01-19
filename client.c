@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:56 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/19 19:28:12 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/19 22:33:01 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,15 @@ void	ft_print_bin(char num, int pid)
 	}
 }
 
+void	sigint_handler(int sig)
+{
+	if (sig == SIGUSR1)
+	{
+		ft_printf("message received\n");
+		exit(0);
+	}
+}
+
 int	main(int argc, const char *argv[])
 {
 	int		i;
@@ -64,6 +73,12 @@ int	main(int argc, const char *argv[])
 		{
 			ft_print_bin(string[i], ft_atoi(argv[1]));
 			i++;
+		}
+		ft_print_bin(0, ft_atoi(argv[1]));
+		while (1)
+		{
+			signal(SIGUSR1, sigint_handler);
+			pause();
 		}
 	}
 	return (0);

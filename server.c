@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:53 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/19 19:28:58 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/19 22:39:57 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,20 @@ void	ft_bin_to_dec(int *rev)
 	ft_printf("%c", some);
 }
 
+int	check_end_stream(int *array)
+{
+	int	i;
+
+	i = 0;
+	while (i < 8)
+	{
+		if (array[i] != 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	sigint_handler(int sig, siginfo_t *info, void *context)
 {
 	static pid_t	client_pid;
@@ -81,6 +95,11 @@ void	sigint_handler(int sig, siginfo_t *info, void *context)
 	{
 		i = 0;
 		ft_bin_to_dec(g_received);
+		if (check_end_stream(g_received))
+		{
+			usleep(100);
+			kill(client_pid, SIGUSR1);
+		}
 	}
 }
 
