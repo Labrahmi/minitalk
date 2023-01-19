@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 14:53:53 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/20 00:12:56 by ylabrahm         ###   ########.fr       */
+/*   Created: 2023/01/20 00:11:41 by ylabrahm          #+#    #+#             */
+/*   Updated: 2023/01/20 00:11:48 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -57,6 +59,20 @@ void	ft_bin_to_dec(int *rev)
 	ft_printf("%c", some);
 }
 
+int	check_end_stream(int *array)
+{
+	int	i;
+
+	i = 0;
+	while (i < 8)
+	{
+		if (array[i] != 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	sigint_handler(int sig, siginfo_t *info, void *context)
 {
 	static pid_t	client_pid;
@@ -81,6 +97,11 @@ void	sigint_handler(int sig, siginfo_t *info, void *context)
 	{
 		i = 0;
 		ft_bin_to_dec(g_received);
+		if (check_end_stream(g_received))
+		{
+			usleep(100);
+			kill(client_pid, SIGUSR1);
+		}
 	}
 }
 
