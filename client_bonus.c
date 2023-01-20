@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:11:52 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/20 00:11:58 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/20 01:19:52 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	ft_set_to_zeros(int *array)
 		array[i++] = 0;
 }
 
-void	ft_print_bin(char num, int pid)
+void	ft_print_bin(unsigned char num, int pid)
 {
-	int	i;
-	int	array[8];
-	int	temp_num;
+	int				i;
+	int				array[8];
+	unsigned char	temp_num;
 
 	ft_set_to_zeros(array);
 	temp_num = num;
@@ -46,7 +46,7 @@ void	ft_print_bin(char num, int pid)
 			kill(pid, SIGUSR1);
 		if (array[i] == 1)
 			kill(pid, SIGUSR2);
-		usleep(100);
+		usleep(1000);
 		i++;
 	}
 }
@@ -62,8 +62,8 @@ void	sigint_handler(int sig)
 
 int	main(int argc, const char *argv[])
 {
-	int		i;
-	char	*string;
+	int				i;
+	unsigned char	*string;
 
 	if (argc == 3)
 	{
