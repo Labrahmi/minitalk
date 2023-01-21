@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:11:41 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/20 00:31:56 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:00:30 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	sigint_handler(int sig, siginfo_t *info, void *context)
 		ft_bin_to_dec(g_received);
 		if (check_end_stream(g_received))
 		{
-			usleep(1000);
+			usleep(100);
 			kill(client_pid, SIGUSR1);
 		}
 	}
