@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ylabrahm <ylabrahm@student.42.fr>          +#+  +:+       +#+         #
+#    By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 21:30:11 by ylabrahm          #+#    #+#              #
-#    Updated: 2023/01/18 20:22:37 by ylabrahm         ###   ########.fr        #
+#    Updated: 2023/01/21 21:00:17 by ylabrahm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,8 +76,11 @@ NAME = libft.a
 
 all:		$(NAME)
 
+# %.o:%.c
+# 	gcc -Wall -Wextra -Werror -c $?
+
 $(NAME):	$(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	ar rcs $(NAME) $?
 
 clean:
 	$(RM) $(OBJS) $(OBJS_B)

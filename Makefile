@@ -6,15 +6,17 @@
 #    By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 15:10:02 by ylabrahm          #+#    #+#              #
-#    Updated: 2023/01/20 00:25:09 by ylabrahm         ###   ########.fr        #
+#    Updated: 2023/01/21 21:00:33 by ylabrahm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = client server
 
-SRCS = client.c server.c
+NAME_BONUS = client_bonus server_bonus
 
-SRCS_BONUS = client_bonus.c server_bonus.c
+SRCS = client.c server.c minitalk_utils.c
+
+SRCS_BONUS = client_bonus.c server_bonus.c minitalk_utils.c
 
 LIBFT_FILE = libft/libft.a
 
@@ -26,26 +28,37 @@ CC = cc
 
 RM = rm -f
 
+CFLAGS = -Wall -Wextra -Werror
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C libft/
-	$(CC) client.o $(LIBFT_FILE) -o client
-	$(CC) server.o $(LIBFT_FILE) -o server
+	$(CC) client.o minitalk_utils.o $(LIBFT_FILE) -o client
+	$(CC) server.o minitalk_utils.o $(LIBFT_FILE) -o server
 
-clean:
-	$(RM) $(NAME)
+clean: clean_libft
 	$(RM) $(OBJS)
 	$(RM) $(OBJS_BONUS)
-	@make fclean -C libft/
-
-bonus:	$(OBJS_BONUS)
-	@make -C libft/
-	$(CC) client_bonus.o $(LIBFT_FILE) -o client
-	$(CC) server_bonus.o $(LIBFT_FILE) -o server
 
 fclean: clean
+	$(RM) $(NAME)
+	$(RM) $(NAME_BONUS)
 
 re:	fclean all
 
-.PHONY: all clean fclean re
+bonus:	make_libft server_bonus client_bonus
+
+server_bonus: $(OBJS_BONUS) 
+	$(CC) server_bonus.o minitalk_utils.o $(LIBFT_FILE) -o server_bonus
+
+client_bonus: $(OBJS_BONUS) 
+	$(CC) client_bonus.o minitalk_utils.o $(LIBFT_FILE) -o client_bonus
+
+make_libft:
+	@make -C libft/
+
+clean_libft:
+	@make fclean -C libft/
+
+.PHONY: all clean fclean re bonus

@@ -6,41 +6,13 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:53 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/20 00:12:56 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/21 20:17:53 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <signal.h>
-#include "libft/libft.h"
+#include "minitalk.h"
 
 int	g_received[8];
-
-void	ft_set_to_zeros(int *array)
-{
-	int	i;
-
-	i = 0;
-	while (i < 8)
-		array[i++] = 0;
-}
-
-int	ft_pow(int n, int p)
-{
-	int	i;
-	int	res;
-
-	i = 0;
-	res = 1;
-	while (i < p)
-	{
-		res *= n;
-		i++;
-	}
-	return (res);
-}
 
 void	ft_bin_to_dec(int *rev)
 {
@@ -63,6 +35,7 @@ void	sigint_handler(int sig, siginfo_t *info, void *context)
 	static int		i;
 	int				c;
 
+	(void) context;
 	if (!(client_pid))
 		client_pid = info->si_pid;
 	if (client_pid != info->si_pid)

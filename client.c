@@ -6,24 +6,11 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:56 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/21 16:00:20 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/21 21:39:32 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <signal.h>
-#include "libft/libft.h"
-
-void	ft_set_to_zeros(int *array)
-{
-	int	i;
-
-	i = 0;
-	while (i < 8)
-		array[i++] = 0;
-}
+#include "minitalk.h"
 
 void	ft_print_bin(char num, int pid)
 {
@@ -56,6 +43,8 @@ int	main(int argc, const char *argv[])
 	int		i;
 	char	*string;
 
+	if (ft_atoi(argv[1]) <= 1)
+		exit(1);
 	if (argc == 3)
 	{
 		string = (char *) argv[2];

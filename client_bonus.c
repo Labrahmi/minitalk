@@ -6,24 +6,11 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:11:52 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/21 16:00:47 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/21 21:39:19 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <signal.h>
-#include "libft/libft.h"
-
-void	ft_set_to_zeros(int *array)
-{
-	int	i;
-
-	i = 0;
-	while (i < 8)
-		array[i++] = 0;
-}
+#include "minitalk.h"
 
 void	ft_print_bin(unsigned char num, int pid)
 {
@@ -60,14 +47,17 @@ void	sigint_handler(int sig)
 	}
 }
 
-int	main(int argc, const char *argv[])
+int	main(int argc, char *argv[])
 {
 	int				i;
 	unsigned char	*string;
 
+	if (ft_atoi(argv[1]) <= 1)
+		exit(1);
 	if (argc == 3)
 	{
-		string = (char *) argv[2];
+		signal(SIGUSR1, sigint_handler);
+		string = (unsigned char *) argv[2];
 		i = 0;
 		while (string[i])
 		{
@@ -75,11 +65,6 @@ int	main(int argc, const char *argv[])
 			i++;
 		}
 		ft_print_bin(0, ft_atoi(argv[1]));
-		while (1)
-		{
-			signal(SIGUSR1, sigint_handler);
-			pause();
-		}
 	}
 	return (0);
 }
