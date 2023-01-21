@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:53:56 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/21 21:39:32 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/21 21:50:30 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ int	main(int argc, const char *argv[])
 	int		i;
 	char	*string;
 
-	if (ft_atoi(argv[1]) <= 1)
-		exit(1);
 	if (argc == 3)
 	{
+		if (ft_atoi(argv[1]) <= 1)
+			exit(1);
 		string = (char *) argv[2];
 		i = 0;
 		while (string[i])

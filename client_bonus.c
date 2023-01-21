@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:11:52 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/21 21:39:19 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/01/21 21:49:28 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int	main(int argc, char *argv[])
 	int				i;
 	unsigned char	*string;
 
-	if (ft_atoi(argv[1]) <= 1)
-		exit(1);
 	if (argc == 3)
 	{
+		if (ft_atoi(argv[1]) <= 1)
+			exit(1);
 		signal(SIGUSR1, sigint_handler);
 		string = (unsigned char *) argv[2];
 		i = 0;
