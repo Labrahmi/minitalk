@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:11:41 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/21 21:46:42 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:03:33 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,15 @@ int	check_end_stream(int *array)
 void	set_c(int sig, int *c)
 {
 	if (sig == SIGUSR1)
+	{
+		ft_printf("0");
 		*c = 0;
+	}
 	if (sig == SIGUSR2)
+	{
+		ft_printf("1");
 		*c = 1;
+	}
 }
 
 void	sigint_handler(int sig, siginfo_t *info, void *context)
@@ -71,11 +77,23 @@ void	sigint_handler(int sig, siginfo_t *info, void *context)
 	if (i == 8)
 	{
 		i = 0;
-		ft_bin_to_dec(g_received);
+		{
+			int	i;
+
+			i = 0;
+			while (i < 8)
+			{
+				ft_printf("%d", g_received[i]);
+				i++;
+			}
+			ft_printf("\n");
+		}
+		// ft_bin_to_dec(g_received);
+		// ft_printf("\n");
 		if (check_end_stream(g_received))
 		{
 			kill(client_pid, SIGUSR1);
-			usleep(100);
+			usleep(11000);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:11:52 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/01/21 21:49:28 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:01:25 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_print_bin(unsigned char num, int pid)
 			kill(pid, SIGUSR1);
 		if (array[i] == 1)
 			kill(pid, SIGUSR2);
-		usleep(100);
+		usleep(11000);
 		i++;
 	}
 }
