@@ -6,7 +6,7 @@
 /*   By: ylabrahm <ylabrahm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:11:41 by ylabrahm          #+#    #+#             */
-/*   Updated: 2023/02/08 18:07:03 by ylabrahm         ###   ########.fr       */
+/*   Updated: 2023/03/05 18:10:58 by ylabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int	main(void)
 	action.sa_flags = SA_SIGINFO;
 	while (1)
 	{
-		sigaction(SIGUSR1, &action, NULL);
-		sigaction(SIGUSR2, &action, NULL);
+		sigaction(SIGUSR1, &action, 0);
+		sigaction(SIGUSR2, &action, 0);
 		pause();
 	}
 	return (0);
